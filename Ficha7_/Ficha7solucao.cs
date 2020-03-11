@@ -75,25 +75,35 @@ namespace Ficha7
                         {
                             case 1:
                                 TmpConv();
-                                break;/*
+                                break;
                             case 2:
-                                DoisNs();
+                                Limite();
                                 break;
                             case 3:
-                                TmpConv();
-                                break;*/
+                                JuntarVarios();
+                                break;
                         }
-                        break;/*
+                        break;
                     case 3:
-                        Horas();
-                        break;*/
+                        Console.WriteLine("\nQual a alinea?");
+                        al = Conversoes.ConverterStringParaInt(Console.ReadLine());
+                        switch (al)
+                        {
+                            case 1:
+                                Mult();
+                                break;
+                            case 2:
+                                Trian();
+                                break;
+                        }
+                        break;
                         }
             }
         }
 
 
         /// <summary>
-        /// Ficha7 ex1.1 recebe uma nota e dz se passou ou chumbou
+        /// Ficha7 ex1.1 recebe uma nota e diz se passou ou chumbou
         /// </summary>
         private static void Nota()
         {
@@ -102,9 +112,17 @@ namespace Ficha7
             Console.WriteLine("\nEscreva a nota");
             nota=Conversoes.ConverterStringParaDecimal(Console.ReadLine());
             if (nota > Conversoes.ConverterStringParaDecimal("9,44"))
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Passou");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
             else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Chumbou");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
         }
 
         /// <summary>
@@ -408,19 +426,100 @@ namespace Ficha7
             {
                 case 'C':
                     TempK = Temp + Conversoes.ConverterStringParaDecimal("273,15");
+                    TempK = Math.Round(TempK, 2);
                     TempF = Temp * 9 / 5 + 32;
+                    TempF = Math.Round(TempF, 2);
                     Console.WriteLine($"{Temp}ºC é equivalente a {TempK}K e {TempF}ºF");
                     break;
                 case 'K':
                     TempC = Temp - Conversoes.ConverterStringParaDecimal("273,15");
+                    TempC = Math.Round(TempC, 2);
                     TempF = Temp * 9 / 5 - Conversoes.ConverterStringParaDecimal("359,67");
+                    TempF = Math.Round(TempF, 2);
                     Console.WriteLine($"{Temp}K é equivalente a {TempC}ºC e {TempF}ºF");
                     break;
                 case 'F':
                     TempC = (Temp - 32) *5 / 9;
+                    TempC = Math.Round(TempC, 2);
                     TempK = (Temp + Conversoes.ConverterStringParaDecimal("459,67")) *5 / 9;
+                    TempK = Math.Round(TempK, 2);
                     Console.WriteLine($"{Temp}ºF é equivalente a {TempC}ºC e {TempK}K");
                     break;
+            }
+        }
+
+        /// <summary>
+        /// Ficha7 ex 2.2 Escrever numeros impares até ao limeite escolhido
+        /// </summary>
+        private static void Limite()
+        {
+            int lim = LerNumEConverter();
+            for (int cont = 0; cont < lim; cont++)
+            {
+                if (cont % 2 == 1)
+                {
+                    Console.WriteLine(cont);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Ficha7 ex 2.3 Junta numeros até ser persionado enter
+        /// </summary>
+        private static void JuntarVarios()
+        {
+            string caracteres="", caracter="";
+            do
+            {
+                Console.WriteLine("\nIntroduz um número, ou enter para terminar");
+                caracter=Console.ReadLine();
+                caracteres = caracter + caracteres;
+
+            } while (caracter!="");
+            Console.WriteLine(caracteres);
+        }
+
+        /// <summary>
+        /// Ficha7 ex 3.1 multiplica por 3 se for par e por 2 se não
+        /// </summary>
+        private static void Mult()
+        {
+            int n = LerNumEConverter();
+            if (n%2==0)
+            {
+                Console.WriteLine(n * 3);
+            }
+            else
+            {
+                Console.WriteLine(n * 2);
+            }
+        }
+        
+        /// <summary>
+        /// Ficha7 ex 3.2 Faz um triangulo com o tamanho escolhido
+        /// </summary>
+        private static void Trian()
+        {
+            Console.WriteLine("\nQual é a dimensão do triangulo ? ");
+            int n = Conversoes.ConverterStringParaInt(Console.ReadLine());
+            int i = 1;
+            while (n > 0) //O fluxograma tem n>=0 o que causa um loop infinito
+            {
+                n--;
+                int a = 0;
+                while (a != n)
+                {
+                    Console.Write(" ");
+                    a++;
+                }
+                int b = 0;
+                while (b != i)
+                {
+                    Console.Write("*");
+                    b++;
+                }
+                i += 2;
+                Console.Write("\n");
             }
         }
     }
