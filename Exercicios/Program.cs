@@ -1,6 +1,7 @@
 ﻿using System;
 using Ficha6;
 using Ficha7;
+using Ficha12;
 using Conversoes_;
 
 
@@ -10,9 +11,7 @@ namespace Consola
     {
         static void Main(string[] args)
         {
-            //test();
-            run();
-            
+            run();   
         }
 
         private static void run()
@@ -33,20 +32,11 @@ namespace Consola
                     case 7:
                         Ficha7solucao.Ficha7();
                         break;
+                    case 12:
+                        Ficha12solucao.Ficha12();
+                        break;
                 }
             }
-        }
-
-        private static void test()
-        {
-            Console.WriteLine("Valor");
-            var val=Console.ReadLine();
-            Console.WriteLine("Caracter");
-            var cha = Console.Read();
-            Console.WriteLine("Tecla");
-            var tec = Console.ReadKey();
-            Console.WriteLine($"Valor {val} \nCaracter {cha} \nTecla {tec.Key}");
-            Console.WriteLine(@"Valor {0} \nCaracter {1} \nTecla {2}",val,cha,tec.Key);
         }
     }
 }
