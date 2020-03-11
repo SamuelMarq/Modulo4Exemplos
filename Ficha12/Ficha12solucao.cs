@@ -79,6 +79,7 @@ namespace Ficha12
                 else
                 {
                     int m = LerNumEConverter();
+                    Console.WriteLine();
                     Console.WriteLine($"{n}+{m}={n+m}");
                     Console.WriteLine($"{n}-{m}={n-m}");
                     Console.WriteLine($"{n}*{m}={n*m}");
