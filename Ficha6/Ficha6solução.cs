@@ -36,10 +36,20 @@ namespace Ficha6
         private static void Soma2()
         {   
             int soma = 0;
-            for (int i = 0; i < 10; i++)
-            {
-                soma += LerNumEConverter();
-            }
+            /* for (int i = 0; i < 10; i++)
+             {
+                 soma += LerNumEConverter();
+             }*/
+            soma += LerNumEConverter();
+            soma += LerNumEConverter();
+            soma += LerNumEConverter();
+            soma += LerNumEConverter();
+            soma += LerNumEConverter();
+            soma += LerNumEConverter();
+            soma += LerNumEConverter();
+            soma += LerNumEConverter();
+            soma += LerNumEConverter();
+            soma += LerNumEConverter();
             Console.WriteLine("Resultado: " + Convert.ToString(soma));
         }
 
@@ -69,7 +79,7 @@ namespace Ficha6
         }
 
         /// <summary>
-        /// Ficha6 ex1.5 uma opcao para cada alinea; cada alinea tem uma opção associada
+        /// Ficha6 ex1.5 uma opcao para cada alinea; cada alinea tem uma operação associada
         /// </summary>
         private static void Operacoes(string opc="")
         {
@@ -297,6 +307,20 @@ namespace Ficha6
         }
 
         /// <summary>
+        /// Ficha 6 ex 3.2 Calcula a area e perimetro de um circulo
+        /// </summary>
+        private static void Area()
+        {
+            decimal raio, perim, area;
+
+            Console.WriteLine("\nQual é o raio?");
+            raio=Conversoes.ConverterStringParaDecimal(Console.ReadLine());
+            perim = 2 * Conversoes.ConverterStringParaDecimal("3,14") * raio;
+            area = Conversoes.ConverterStringParaDecimal("3,14") * raio * raio;
+            Console.WriteLine("A área do circulo é "+area+" e o perimetro é "+perim);
+        }
+
+        /// <summary>
         /// Corre todos os exercicios da ficha 6
         /// </summary>
         public static void Ficha6()
@@ -369,7 +393,12 @@ namespace Ficha6
                         }
                         break;
                     case 3:
-                        Horas();
+                        Console.WriteLine("\nQual a alinea?");
+                        al = Conversoes.ConverterStringParaInt(Console.ReadLine());
+                        if (al == 1)
+                            Horas();
+                        else
+                            Area();
                         break;
                 }
             }

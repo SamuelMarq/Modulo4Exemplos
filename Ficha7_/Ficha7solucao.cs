@@ -44,44 +44,50 @@ namespace Ficha7
                                 break;
                             case 6:
                                 Elevador();
-                                break;/*
+                                break;
                             case 7:
-                                Media();
+                                Soma10();
                                 break;
                             case 8:
-                                Media2(5);
+                                Compra();
                                 break;
                             case 9:
-                                Media2(10);
+                                Media();
                                 break;
                             case 10:
-                                Tabela();
+                                Operacao();
                                 break;
                             case 11:
-                                Compra();
-                                break;*/
+                                Tabela();
+                                break;
+                            case 12:
+                                Tabela2();
+                                break;
+                            case 13:
+                                Tabela3();
+                                break;
                         }
                         break;
-                    /*case 2:
+                    case 2:
                         Console.WriteLine("\nQual a alinea?");
                         al = Conversoes.ConverterStringParaInt(Console.ReadLine());
                         switch (al)
                         {
                             case 1:
-                                Diz();
-                                break;
+                                TmpConv();
+                                break;/*
                             case 2:
                                 DoisNs();
                                 break;
                             case 3:
                                 TmpConv();
-                                break;
+                                break;*/
                         }
-                        break;
+                        break;/*
                     case 3:
                         Horas();
                         break;*/
-                }
+                        }
             }
         }
 
@@ -106,21 +112,21 @@ namespace Ficha7
         /// </summary>
         private static void BMI()
         {
-            decimal Altura, Peso, Bmi;
+            decimal altura, peso, bmi;
 
             Console.WriteLine("\nQual a Altura?");
-            Altura = Conversoes.ConverterStringParaDecimal(Console.ReadLine());
+            altura = Conversoes.ConverterStringParaDecimal(Console.ReadLine());
             Console.WriteLine("\nQual o Peso?");
-            Peso = Conversoes.ConverterStringParaDecimal(Console.ReadLine());
-            Bmi = Peso / (Altura * Altura);
-            if (Bmi < Conversoes.ConverterStringParaDecimal("18,5"))
-                Console.WriteLine("Abaixo do peso: "+Bmi);
-            else if (Bmi < Conversoes.ConverterStringParaDecimal("25"))
-                Console.WriteLine("Normal: " + Bmi);
-            else if (Bmi < Conversoes.ConverterStringParaDecimal("30"))
-                Console.WriteLine("Acima do peso: " + Bmi);
+            peso = Conversoes.ConverterStringParaDecimal(Console.ReadLine());
+            bmi = peso / (altura * altura);
+            if (bmi < Conversoes.ConverterStringParaDecimal("18,5"))
+                Console.WriteLine("Abaixo do peso: "+bmi);
+            else if (bmi < Conversoes.ConverterStringParaDecimal("25"))
+                Console.WriteLine("Normal: " + bmi);
+            else if (bmi < Conversoes.ConverterStringParaDecimal("30"))
+                Console.WriteLine("Acima do peso: " + bmi);
             else
-                Console.WriteLine("Obeso: " + Bmi);
+                Console.WriteLine("Obeso: " + bmi);
         }
 
         /// <summary>
@@ -192,7 +198,230 @@ namespace Ficha7
         /// </summary>
         private static void Soma10()
         {
+            int c = 0, soma = 0;
+            
+            //do ... while
+/*
+            do
+            {
+                soma += LerNumEConverter();
+                c++;
+            } while (c < 10);
+            */
 
+            //while
+
+            while (c < 10)
+            {
+                soma += LerNumEConverter();
+                c++;
+            }
+
+
+            //for
+            /*
+            for (int i = 0; i < 10; i++)
+            {
+                soma += LerNumEConverter();
+            }
+            */
+
+            Console.WriteLine("Soma = " + soma);
+        }
+
+        private static int LerNumEConverter()
+        {
+            Console.WriteLine("\nEscreva um numero: ");
+            return Conversoes.ConverterStringParaInt(Console.ReadLine());
+        }
+
+        /// <summary>
+        /// Ficha7 ex 1.8 apresentar valor total de uma compra
+        /// </summary>
+        private static void Compra()
+        {
+            decimal total = 0;
+            string compra="";
+
+            Console.WriteLine("\nQuantos productos?");
+            int c = Conversoes.ConverterStringParaInt(Console.ReadLine());
+            for (int i = 0; i < c; i++)
+            {
+                string item = ProdPreco();
+                compra += item;
+                String[] strlist = item.Split("é ", StringSplitOptions.None);
+                total += Conversoes.ConverterStringParaDecimal(strlist[strlist.Length - 1]);
+            }
+            Console.WriteLine(compra);
+            Console.WriteLine("Preço Total da compra: " + total);
+        }
+
+        private static string ProdPreco()
+        {
+            String Prod, s;
+            decimal Preco = 0, TotalP = 0;
+            int Qnt = 0;
+
+            Console.WriteLine("\nQual o Producto?");
+            Prod = Console.ReadLine();
+            Console.WriteLine("Qual o Preço?");
+            Preco = Conversoes.ConverterStringParaDecimal(Console.ReadLine());
+            Console.WriteLine("Qual a Quantidade?");
+            Qnt = Conversoes.ConverterStringParaInt(Console.ReadLine());
+            TotalP = Preco * Qnt;
+            s="\nPreço Total de " + Prod + " é " + TotalP;
+            return s;
+        }
+
+        /// <summary>
+        /// Ficha7 ex 1.9 Solicitar números até que seja inserido 0, e apresentar a média
+        /// </summary>
+        private static void Media()
+        {
+            int c;
+            double media, val, soma;
+
+            c = 0;
+            soma = 0;
+
+            while (true)
+            {
+                val = LerNumEConverter();
+                if (val == 0)
+                    break;
+                soma += val;
+                c++;
+            }
+            media = soma / c;
+            Console.WriteLine("\nMédia = " + media);
+        }
+
+        /// <summary>
+        /// Ficha7 ex 1.10 Solicitar dois números e uma operação. Apresentar o resultado da operação com base nos números inseridos
+        /// </summary>
+        private static void Operacao()
+        {
+            string op;
+
+            while (7 != 23)
+            {
+                decimal n1 = LerNumEConverter();
+                decimal n2 = LerNumEConverter();
+                Console.WriteLine("Qual a operação?");
+                op = Console.ReadLine();
+
+                switch (op)
+                {
+                    case "0":
+                        return;
+                    case "+":
+                        Console.WriteLine(n1+op+n2+"="+(n1+n2));
+                        break;
+                    case "-":
+                        Console.WriteLine(n1 + op + n2 + "=" + (n1 - n2));
+                        break;
+                    case "*":
+                        Console.WriteLine(n1 + op + n2 + "=" + (n1 * n2));
+                        break;
+                    case "/":
+                        Console.WriteLine(n1 + op + n2 + "=" + (n1 / n2));
+                        break;
+                    case "%":
+                        Console.WriteLine(n1 + op + n2 + "=" + (n1 % n2));
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Ficha7 ex 1.11 pede uma letra e escreve uma tabela 3x3 dessa letra
+        /// </summary>
+        private static void Tabela()
+        {
+            Console.WriteLine("\nEscreve uma letra");
+            char l = Console.ReadLine()[0];
+            Console.WriteLine(tabelaSTR(l, 3, 3));
+        }
+
+        private static string tabelaSTR(char l, int n, int m, char ll='0')
+        {
+            string str="";
+            if (ll == '0')
+                ll = l;
+
+            for (int i = 0; i < m; i++)
+            {
+                str += '\n';
+                for (int j = 0; j < n; j++)
+                {
+                    if (Convert.ToBoolean(j % 2))
+                        str += l;
+                    else
+                        str += ll;
+                }
+            }
+            return str;
+        }
+
+        /// <summary>
+        /// Ficha7 ex 1.12 pede uma letra e escreve uma tabela nxm dessa letra
+        /// </summary>
+        private static void Tabela2()
+        {
+            Console.WriteLine("\nEscreve uma letra");
+            char l = Console.ReadLine()[0];
+            int n1 = LerNumEConverter();
+            int n2 = LerNumEConverter();
+            Console.WriteLine(tabelaSTR(l, n1, n2));
+        }
+
+        /// <summary>
+        /// Ficha7 ex 1.13 pede duas letras e escreve uma tabela nxm dessa letra
+        /// </summary>
+        private static void Tabela3()
+        {
+            Console.WriteLine("\nEscreve uma letra");
+            char l = Console.ReadLine()[0];
+            Console.WriteLine("\nEscreve uma letra");
+            char ll = Console.ReadLine()[0];
+            int n1 = LerNumEConverter();
+            int n2 = LerNumEConverter();
+            Console.WriteLine(tabelaSTR(l, n1, n2, ll));
+        }
+
+        /// <summary>
+        /// Ficha7 ex 2.1 Converte a Temperatura de e para ºC, K e ºF
+        /// </summary>
+        private static void TmpConv()
+        {
+            decimal Temp, TempC, TempK, TempF;
+            char escala='l';
+
+            Console.WriteLine("\nIntroduz a temperatura");
+            Temp = Conversoes.ConverterStringParaDecimal(Console.ReadLine());
+            while (escala != 'C' && escala != 'K' && escala != 'F')
+            {
+                Console.WriteLine("Em que escala? (C, K ou F)");
+                escala = Console.ReadLine()[0];
+            }
+            switch (escala)
+            {
+                case 'C':
+                    TempK = Temp + Conversoes.ConverterStringParaDecimal("273,15");
+                    TempF = Temp * 9 / 5 + 32;
+                    Console.WriteLine($"{Temp}ºC é equivalente a {TempK}K e {TempF}ºF");
+                    break;
+                case 'K':
+                    TempC = Temp - Conversoes.ConverterStringParaDecimal("273,15");
+                    TempF = Temp * 9 / 5 - Conversoes.ConverterStringParaDecimal("359,67");
+                    Console.WriteLine($"{Temp}K é equivalente a {TempC}ºC e {TempF}ºF");
+                    break;
+                case 'F':
+                    TempC = (Temp - 32) *5 / 9;
+                    TempK = (Temp + Conversoes.ConverterStringParaDecimal("459,67")) *5 / 9;
+                    Console.WriteLine($"{Temp}ºF é equivalente a {TempC}ºC e {TempK}K");
+                    break;
+            }
         }
     }
 }
