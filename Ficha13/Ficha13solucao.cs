@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using Conversoes_;
 
 namespace Ficha13
@@ -11,7 +10,7 @@ namespace Ficha13
         /// </summary>
         public static void Ficha13()
         {
-            int ex, al;
+            int ex;
 
             while (true)
             {
@@ -28,31 +27,30 @@ namespace Ficha13
                         return;
                     case 1:
                         Calculadora();
-                        break;/*
-                    case 2:
-                        DoisN();
                         break;
-                    case 3:
-                        Resul();
-                        break;
-                    case 4:
-                        Primos();
-                        break;
-                    case 5:
-                        Hello();
-                        break;
-                    case 6:
-                        Guess();
-                        break;*/
                 }
             }
         }
 
 
-        private static int LerNumEConverter()
+        private static decimal LerNumEConverter2()
         {
+            decimal n = 0;
             Console.WriteLine("\nEscreva um numero: ");
-            return Conversoes.ConverterStringParaInt(Console.ReadLine());
+            while (69!=420)
+            {
+                try
+                {
+                    n = Convert.ToDecimal(Console.ReadLine());
+                    break;
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("\nEntrada inválida: ");
+                    Console.WriteLine("\nEscreva um numero: ");
+                }
+            }
+            return n;
         }
 
         /// <summary>
@@ -69,21 +67,13 @@ namespace Ficha13
             {
                 if (firstrun)
                 {
-                    Console.WriteLine("\nNumero");
-                    n = Conversoes.ConverterStringParaDecimal(Console.ReadLine());
+                    n = LerNumEConverter2();
                     firstrun = false;
                 }
-                Console.WriteLine("\nOperação\n");
-                Console.WriteLine("Para sair escolha 'X'");
+                Console.WriteLine("\nPara sair escolha 'X'");
                 Console.WriteLine("Para apagar escolha 'C'\n");
-                try
-                {
-                    op = Convert.ToChar(Console.ReadLine());
-                }
-                catch (Exception)
-                {
-                    op = Console.ReadLine()[0];
-                }
+                Console.WriteLine("Qual a operação\n");
+                op = Console.ReadLine()[0];
                 
                 switch (op)
                 {
@@ -114,7 +104,7 @@ namespace Ficha13
         {
             decimal n2;
             Console.WriteLine("Numero");
-            n2 = Conversoes.ConverterStringParaDecimal(Console.ReadLine());
+            n2 = LerNumEConverter2();
             var n3 = n1 + n2;
             Console.WriteLine($"{n1}+{n2}={n3}");
             return n3;
@@ -124,7 +114,7 @@ namespace Ficha13
         {
             decimal n2;
             Console.WriteLine("Numero");
-            n2 = Conversoes.ConverterStringParaDecimal(Console.ReadLine());
+            n2 = LerNumEConverter2();
             var n3 = n1 - n2;
             Console.WriteLine($"{n1}-{n2}={n3}");
             return n3;
@@ -134,7 +124,7 @@ namespace Ficha13
         {
             decimal n2;
             Console.WriteLine("Numero");
-            n2 = Conversoes.ConverterStringParaDecimal(Console.ReadLine());
+            n2 = LerNumEConverter2();
             var n3 = n1 * n2;
             Console.WriteLine($"{n1}*{n2}={n3}");
             return n3;
@@ -148,8 +138,7 @@ namespace Ficha13
             {
                 try
                 {
-                    Console.WriteLine("Numero");
-                    n2 = Conversoes.ConverterStringParaDecimal(Console.ReadLine());
+                    n2 = LerNumEConverter2();
                     n3 = n1 / n2;
                     break;
                 }
