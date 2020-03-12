@@ -10,12 +10,12 @@ namespace Ficha12
         /// </summary>
         public static void Ficha12()
         {
-            int ex, al;
+            int ex;
 
             while (true)
             {
                 Console.WriteLine("\nQual o exercicio?");
-                Console.WriteLine("Para sair escolha 0\n");
+                Console.WriteLine("Para voltar escolha 0\n");
                 ex = Conversoes.ConverterStringParaInt(Console.ReadLine());
                 switch (ex)
                 {

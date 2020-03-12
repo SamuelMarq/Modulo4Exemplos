@@ -282,12 +282,12 @@ namespace Ficha7
 
             Console.WriteLine("\nQual o Producto?");
             Prod = Console.ReadLine();
-            Console.WriteLine("Qual o Preço?");
+            Console.WriteLine($"Qual o Preço de {Prod}?");
             Preco = Conversoes.ConverterStringParaDecimal(Console.ReadLine());
-            Console.WriteLine("Qual a Quantidade?");
+            Console.WriteLine($"Qual a Quantidade de { Prod}?");
             Qnt = Conversoes.ConverterStringParaInt(Console.ReadLine());
             TotalP = Preco * Qnt;
-            s="\nPreço Total de " + Prod + " é " + TotalP;
+            s= $"\nO preço de {Qnt} {Prod} é { TotalP}";
             return s;
         }
 
