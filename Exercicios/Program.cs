@@ -4,7 +4,7 @@ using Ficha7;
 using Ficha8;
 using Ficha12;
 using Ficha13;
-using Conversoes_;
+using Common;
 
 
 namespace Consola
@@ -13,10 +13,10 @@ namespace Consola
     {
         static void Main(string[] args)
         {
-            run();   
+            Run();   
         }
 
-        private static void run()
+        private static void Run()
         {
             Console.WriteLine("Módulo 4");
             while (true)
@@ -24,8 +24,8 @@ namespace Consola
                 Console.WriteLine("\nQual a Ficha?");
                 Console.WriteLine("Para sair escolha 0");
                 Console.WriteLine("Fichas disponiveis:");
-                Console.WriteLine("Ficha 6");
-                Console.WriteLine("Ficha 7");
+                Console.WriteLine("Ficha 6 ou 10");
+                Console.WriteLine("Ficha 7 ou 11");
                 Console.WriteLine("Ficha 8");
                 Console.WriteLine("Ficha 9 ou 12");
                 Console.WriteLine("Ficha 13\n");
@@ -36,8 +36,10 @@ namespace Consola
                     case 0:
                         return;
                     case 6:
+                    case 10:
                         Ficha6solucao.Ficha6();
                         break;
+                    case 11:
                     case 7:
                         Ficha7solucao.Ficha7();
                         break;

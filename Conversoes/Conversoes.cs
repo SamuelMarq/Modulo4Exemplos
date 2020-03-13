@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Conversoes_
+namespace Common
 {
     public class Conversoes
     {
@@ -25,14 +25,26 @@ namespace Conversoes_
         }
 
         /// <summary>
-        /// Usado para converter strings para doubles de forma segura, devolve 0 se for fornecido um valor não convertivel
+        /// Usado para converter strings para decimal de forma segura, devolve 0 se for fornecido um valor não convertivel
         /// </summary>
         /// <param name="num"></param>
         /// <returns></returns>
         public static decimal ConverterStringParaDecimal(string num)
         {
-            var parseOk = decimal.TryParse(num, out decimal parsedNum);
+            decimal.TryParse(num, out decimal parsedNum);
+            return parsedNum;
+        }
+
+        /// <summary>
+        /// Usado para converter strings para doubles de forma segura, devolve 0 se for fornecido um valor não convertivel
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
+        public static double ConverterStringParaDouble(string num)
+        {
+            double.TryParse(num, out double parsedNum);
             return parsedNum;
         }
     }
 }
+

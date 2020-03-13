@@ -1,5 +1,5 @@
 ﻿using System;
-using Conversoes_;
+using Common;
 
 namespace Ficha12
 {
@@ -19,6 +19,9 @@ namespace Ficha12
                 ex = Conversoes.ConverterStringParaInt(Console.ReadLine());
                 switch (ex)
                 {
+                    case -1:
+                        Environment.Exit(0);
+                        break;
                     case 0:
                         return;
                     case 1:
@@ -37,6 +40,18 @@ namespace Ficha12
                         Hello();
                         break;
                     case 6:
+                        Dist();
+                        break;
+                    case 7:
+                        Bissexto();
+                        break;
+                    case 8:
+                        Beers();
+                        break;
+                    case 9:
+                        Trian();
+                        break;
+                    case 16:
                         Guess();
                         break;
                 }
@@ -169,7 +184,97 @@ namespace Ficha12
         }
 
         /// <summary>
-        /// Ficha12 ex6 Adivinhar numero
+        /// Ficha12 ex6 Solicitar uma quantidade de itens e distribuí-los entre duas pessoas 
+        /// </summary>
+        private static void Dist()
+        {
+            int items;
+            Console.WriteLine("Quantos items?");
+            items = Conversoes.ConverterStringParaInt(Console.ReadLine());
+            for (int i = 0; i < items; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    Console.WriteLine("Um pra mim");
+                }
+                else
+                {
+                    Console.WriteLine("Um pra ti");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Ficha12 ex7 Solicitar um ano e determinar se é bissexto. 
+        /// </summary>
+        private static void Bissexto()
+        {
+            int ano;
+            Console.WriteLine("Qual o ano?");
+            ano = Conversoes.ConverterStringParaInt(Console.ReadLine());
+            if (ano % 4 == 0 && ano % 100 != 0 || ano % 400 == 0)
+            {
+                Console.WriteLine("O ano é Bissexto");
+            }
+            else
+            {
+                Console.WriteLine("O ano não é Bissexto");
+            }
+        }
+
+        /// <summary>
+        /// Ficha12 ex8 Apresentar a letra para a música “99 beers on the wall”.
+        /// </summary>
+        private static void Beers()
+        {
+            int n = 99;
+            while (n>1)
+            {
+                Console.WriteLine($"{n} bottles of beer on the wall, {n} bottles of beer.");
+                n--;
+                Console.WriteLine($"Take one down and pass it around, {n} bottles of beer on the wall.\n");
+            }
+            Console.WriteLine($"{n} bottle of beer on the wall, {n} bottle of beer.");
+            Console.WriteLine($"Take one down and pass it around, no more bottles of beer on the wall.\n");
+            Console.WriteLine($"Go to the store and buy some more, 99 bottles of beer on the wall.");
+            string res = InputRequest.RequestString("Continue?");
+            if (res == "S" || res == "s" || res == "Y" || res == "y" || res == "Sim" || res == "sim" || res == "Yes" || res == "yes")
+                Beers();
+        }
+
+        /// <summary>
+        /// Ficha12 ex9 Verificar se um triângulo é isóscele, escaleno ou equilátero.
+        /// </summary>
+        private static void Trian()
+        {
+            string l1, l2, l3;
+            l1=InputRequest.RequestString("\nQual o tamanho dos lados do triângulo?\nPrimeiro Lado:");
+            l2=InputRequest.RequestString("Segundo Lado:");
+            l3=InputRequest.RequestString("Terceiro Lado:");
+            if (l1==l2&&l1==l3)
+            {
+                Console.WriteLine("O triângulo é equilátero.");
+            }
+            else if (l1==l2||l1==l3||l2==l3)
+            {
+                Console.WriteLine("O triângulo é isósceles.");
+            }
+            else
+            {
+                Console.WriteLine("O triângulo é escaleno.");
+            }
+        }
+
+        /// <summary>
+        /// Ficha12 ex10 Verificar com base em dois valores se uma operação deu lucro ou prejuízo
+        /// </summary>
+        private static void Lucro()
+        {
+
+        }
+
+        /// <summary>
+        /// Ficha12 ex16 Adivinhar numero
         /// </summary>
         private static void Guess()
         {
@@ -195,13 +300,14 @@ namespace Ficha12
             } while (b > 1);
             Console.WriteLine($"É {a}?");
             res = Console.ReadLine();
-            if (res!="S")
+            if (res!="S" && res != "s")
             {
                 Console.WriteLine($"É {a+1}?");
                 res = Console.ReadLine();
-                if (res != "S")
+                if (res != "S" && res != "s")
                     Console.WriteLine($"É {a-1}?");
             }
         }
+
     }
 }
