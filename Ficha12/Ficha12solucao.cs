@@ -51,6 +51,12 @@ namespace Ficha12
                     case 9:
                         Trian();
                         break;
+                    case 10:
+                        Lucro();
+                        break;
+                    case 11:
+                        Mes();
+                        break;
                     case 16:
                         Guess();
                         break;
@@ -209,9 +215,12 @@ namespace Ficha12
         /// </summary>
         private static void Bissexto()
         {
-            int ano;
-            Console.WriteLine("Qual o ano?");
-            ano = Conversoes.ConverterStringParaInt(Console.ReadLine());
+            int ano=0;
+            while (ano<1)
+            {
+                Console.WriteLine("Qual o ano?");
+                ano = Conversoes.ConverterStringParaInt(Console.ReadLine());
+            }
             if (ano % 4 == 0 && ano % 100 != 0 || ano % 400 == 0)
             {
                 Console.WriteLine("O ano é Bissexto");
@@ -243,7 +252,7 @@ namespace Ficha12
         }
 
         /// <summary>
-        /// Ficha12 ex9 Verificar se um triângulo é isóscele, escaleno ou equilátero.
+        /// Ficha12 ex9 Verificar se um triângulo é isósceles, escaleno ou equilátero.
         /// </summary>
         private static void Trian()
         {
@@ -270,7 +279,70 @@ namespace Ficha12
         /// </summary>
         private static void Lucro()
         {
+            double vI = Conversoes.ConverterStringParaDouble(InputRequest.RequestString("Qual o valor inicial?"));
+            double vF = Conversoes.ConverterStringParaDouble(InputRequest.RequestString("Qual o valor final?"));
+            if (vI<vF)
+            {
+                Console.WriteLine("Teve Lucro");
+            }
+            else if (vI==vF)
+            {
+                Console.WriteLine("Não teve Lucro nem Prejuizo");
+            }
+            else
+            {
+                Console.WriteLine("Teve Prejuizo");
+            }
+        }
 
+        /// <summary>
+        /// Ficha12 ex11 Retornar o nome do mês e o seu número de dias com base num valor numérico (1-12)
+        /// </summary>
+        private static void Mes()
+        {
+            string m=InputRequest.RequestString("\nQual o mês? (1-12)");
+            switch (m)
+            {
+                case "1":
+                    Console.WriteLine("Janeiro tem 31 dias");
+                    break;
+                case "2":
+                    Console.WriteLine("Fevereiro tem 28 ou 29 dias");
+                    break;
+                case "3":
+                    Console.WriteLine("Março tem 31 dias");
+                    break;
+                case "4":
+                    Console.WriteLine("Abril tem 30 dias");
+                    break;
+                case "5":
+                    Console.WriteLine("Maio tem 31 dias");
+                    break;
+                case "6":
+                    Console.WriteLine("Junho tem 30 dias");
+                    break;
+                case "7":
+                    Console.WriteLine("Julho tem 31 dias");
+                    break;
+                case "8":
+                    Console.WriteLine("Agosto tem 31 dias");
+                    break;
+                case "9":
+                    Console.WriteLine("Setembro tem 30 dias");
+                    break;
+                case "10":
+                    Console.WriteLine("Outubro tem 31 dias");
+                    break;
+                case "11":
+                    Console.WriteLine("Novembro tem 30 dias");
+                    break;
+                case "12":
+                    Console.WriteLine("Dezembro tem 31 dias");
+                    break;
+                default:
+                    Mes();
+                    break;
+            }
         }
 
         /// <summary>
