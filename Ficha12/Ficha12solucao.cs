@@ -57,6 +57,18 @@ namespace Ficha12
                     case 11:
                         Mes();
                         break;
+                    case 12:
+                        Arvore_taNal();
+                        break;
+                    case 13:
+                        FaturaAgua();
+                        break;
+                    case 14:
+                        NFibonacci();
+                        break;
+                    case 15:
+                        Fibonice();
+                        break;
                     case 16:
                         Guess();
                         break;
@@ -342,6 +354,116 @@ namespace Ficha12
                 default:
                     Mes();
                     break;
+            }
+        }
+
+        /// <summary>
+        ///  Ficha12 ex12 árvore de taNal
+        /// </summary>
+        private static void Arvore_taNal()
+        {
+            Console.WriteLine("\nQual é a dimensão da árvore ? ");
+            int n = Conversoes.ConverterStringParaInt(Console.ReadLine());
+            int m = 0;
+            int i = n*2-1;
+            while (m < n)
+            {
+                int a = 0;
+                while (a != m)
+                {
+                    Console.Write(" ");
+                    a++;
+                }
+                int b = 0;
+                while (b != i)
+                {
+                    Console.Write("*");
+                    b++;
+                }
+                i -= 2;
+                Console.Write("\n");
+                m++;
+            }
+        }
+
+        /// <summary>
+        ///  Ficha12 ex13 árvore de taNal
+        /// </summary>
+        private static void FaturaAgua()
+        {
+            string reg=InputRequest.RequestString("\nQual a Região onde se encontra");
+            double pre = 0;
+            switch (reg)
+            {
+                case "A":pre = 2; break;
+                case "B":pre = 1.2 ;break;
+                case "C":pre = 1; break;
+                case "D":pre = 0.75; break;
+                default:
+                    Console.WriteLine("Região não Válida!\nApenas existém as regiões A; B; C; D");
+                    FaturaAgua();
+                    return;
+            }
+            double qnt = Conversoes.ConverterStringParaDouble(InputRequest.RequestString("\nQuanta água foi consumida?"));
+            Console.WriteLine($"O preço total é: {Math.Round(qnt * pre,2)}");
+        }
+
+        /// <summary>
+        ///  Ficha12 ex14 Apresentar os primeiros n números de Fibonacci (sem recursividade)
+        /// </summary>
+        private static void NFibonacci()
+        {
+            int n = Conversoes.ConverterStringParaInt(InputRequest.RequestString("\nQuantos Numeros?"));
+            Console.WriteLine(Fibonacci(n));
+        }
+
+        /// <summary>
+        ///  Ficha12 ex15 Solicitar um número n, e caso este faça parte da série de Fibonacci, apresentar "n é Fibonice!"
+        /// </summary>
+        private static void Fibonice()
+        {
+            int n = Conversoes.ConverterStringParaInt(InputRequest.RequestString("\nQual o Numero?"));
+            if (Fibonacci(n,1)=="0")
+            {
+                Console.WriteLine($"{n} é Fibonice!");
+            }
+            else
+            {
+                Console.WriteLine($"{n} não faz parte da sequência de Fibonacci");
+
+            }
+        }
+
+        /// <summary>
+        /// No modo default devolve os primeiros n numeros de fibonacci
+        /// No modo 1 devolve "0" se n faz parte da sequencia e "1" se não fizer
+        /// </summary>
+        private static string Fibonacci(int n,int m=0)
+        {
+            string fib = "";
+            int currentN = 1;
+            int prevN = 0;
+            int extra;
+            for (int i = 1; true; i++)
+            {
+                fib += currentN.ToString() + "; ";
+                extra = currentN;
+                currentN += prevN;
+                prevN = extra;
+                if (m != 0)
+                    if (n == currentN)
+                    {
+                        return "0";
+                    }
+                    else if (n <= currentN)
+                    {
+                        return "1";
+                    }
+                    else{}
+                else if (n <= i)
+                {
+                    return fib;
+                }
             }
         }
 
