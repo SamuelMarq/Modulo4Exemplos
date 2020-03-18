@@ -26,7 +26,7 @@ namespace Consola
                 Console.WriteLine("Fichas disponiveis:");
                 Console.WriteLine("Ficha 6 ou 10");
                 Console.WriteLine("Ficha 7 ou 11");
-                Console.WriteLine("Ficha 8");
+                Console.WriteLine("Ficha 8 ou 14");
                 Console.WriteLine("Ficha 9 ou 12");
                 Console.WriteLine("Ficha 13\n");
                 int f = Conversoes.ConverterStringParaInt(Console.ReadLine());
@@ -44,6 +44,7 @@ namespace Consola
                         Ficha7solucao.Ficha7();
                         break;
                     case 8:
+                    case 14:
                         Ficha8solucao.Ficha8();
                         break;
                     case 9:
