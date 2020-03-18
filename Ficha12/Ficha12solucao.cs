@@ -440,13 +440,12 @@ namespace Ficha12
         /// </summary>
         private static string Fibonacci(int n,int m=0)
         {
-            string fib = "";
+            string fib = "1; ";
             int currentN = 1;
             int prevN = 0;
             int extra;
             for (int i = 1; true; i++)
             {
-                fib += currentN.ToString() + "; ";
                 extra = currentN;
                 currentN += prevN;
                 prevN = extra;
@@ -460,9 +459,11 @@ namespace Ficha12
                         return "1";
                     }
                     else{}
-                else if (n <= i)
+                else
                 {
-                    return fib;
+                    if (n <= i||n<2)
+                        return fib;
+                    fib += currentN.ToString() + "; ";
                 }
             }
         }
