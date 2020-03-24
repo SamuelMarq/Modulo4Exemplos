@@ -7,8 +7,6 @@ namespace Common
         /// <summary>
         /// Usado para converter strings para int de forma segura, devolve 0 se for fornecido um valor não convertivel
         /// </summary>
-        /// <param name="num"></param>
-        /// <returns></returns>
         public static int ConverterStringParaInt(string num)
         {
             var parseOk = int.TryParse(num, out int parsedNum);
@@ -27,8 +25,6 @@ namespace Common
         /// <summary>
         /// Usado para converter strings para decimal de forma segura, devolve 0 se for fornecido um valor não convertivel
         /// </summary>
-        /// <param name="num"></param>
-        /// <returns></returns>
         public static decimal ConverterStringParaDecimal(string num)
         {
             decimal.TryParse(num, out decimal parsedNum);
@@ -38,8 +34,6 @@ namespace Common
         /// <summary>
         /// Usado para converter strings para doubles de forma segura, devolve 0 se for fornecido um valor não convertivel
         /// </summary>
-        /// <param name="num"></param>
-        /// <returns></returns>
         public static double ConverterStringParaDouble(string num)
         {
             double.TryParse(num, out double parsedNum);
