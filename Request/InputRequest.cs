@@ -16,19 +16,37 @@ namespace Common
         }
 
         /// <summary>
-        /// Creates an array of numbers
+        /// Requests an input for an int value
+        /// </summary>
+        public static int RequestInt(string message)
+        {
+            Console.WriteLine("\n" + message);
+            return Conversoes.ConverterStringParaInt(Console.ReadLine());
+        }
+
+        /// <summary>
+        /// Requests an input for an double value
+        /// </summary>
+        public static double RequestDouble(string message)
+        {
+            Console.WriteLine("\n" + message);
+            return Conversoes.ConverterStringParaDouble(Console.ReadLine());
+        }
+
+        /// <summary>
+        /// Creates an array of ints
         /// </summary>
         public static int[] GetIntArray(int t=-1)
         {
             if (t==-1)
-                t = Conversoes.ConverterStringParaInt(RequestString("Quantos elementos tem o Array?"));
+                t = RequestInt("Quantos elementos tem o Array?");
             string[] a = new String[t];
             for (int i = 0; i < t; i++)
             {
                 var s = InputRequest.RequestString("Introduza um Número");
                 a.SetValue(s, i);
             }
-            int[] b = new int[10];
+            int[] b = new int[t];
             for (int i = 0; i < a.Length; i++)
             {
                 string v = a.GetValue(i).ToString();
@@ -43,7 +61,7 @@ namespace Common
         public static string[] GetStrArray(int t=-1)
         {
             if (t == -1)
-                t = Conversoes.ConverterStringParaInt(RequestString("Quantos elementos tem o Array?"));
+                t = RequestInt("Quantos elementos tem o Array?");
             string[] a = new String[t];
             for (int i = 0; i < t; i++)
             {
@@ -53,6 +71,20 @@ namespace Common
             return a;
         }
 
-        
+        /// <summary>
+        /// Creates an array of doubles
+        /// </summary>
+        public static double[] GetDoubleArray(int t = -1)
+        {
+            if (t == -1)
+                t = RequestInt("Quantos elementos tem o Array?");
+            double[] a = new double[t];
+            for (int i = 0; i < t; i++)
+            {
+                double d = InputRequest.RequestDouble("Introduza um Número");
+                a.SetValue(d, i);
+            }
+            return a;
+        }
     }
 }

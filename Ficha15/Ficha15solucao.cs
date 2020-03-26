@@ -50,6 +50,21 @@ namespace Ficha15
                     case 8:
                         Organizar();
                         break;
+                    case 9:
+                        Merge();
+                        break;
+                    case 10:
+                        MaiorMenor();
+                        break;
+                    case 11:
+                        ParImpar();
+                        break;
+                    case 12:
+                        ex12();
+                        break;
+                    /*case 13:
+                        ();
+                        break;*/
                 }
             }
         }
@@ -258,6 +273,89 @@ namespace Ficha15
             Console.WriteLine("[{0}]", string.Join(", ", a));
         }
 
+        /// <summary>
+        /// ex9 Faz o merge de dois int arrays
+        /// </summary>
+        private static void Merge()
+        {
+            int[] a = InputRequest.GetIntArray();
+            int[] b = InputRequest.GetIntArray();
+            int totalL = Contar(a) + Contar(b);
+            int[] merged = new int[totalL];
+            int c = 0, ca=0, cb=0;
+            while (c<totalL)
+            {
+                if (ca>=a.Length)
+                {
+                    while (cb<b.Length)
+                    {
+                        merged[c] = b[cb];
+                        cb++;
+                        c++;
+                    }
+                }
+                else if (cb >= b.Length)
+                {
+                    while (ca < a.Length)
+                    {
+                        merged[c] = a[ca];
+                        ca++;
+                        c++;
+                    }
+                }
+                else if (a[ca] <= b[cb])
+                {
+                    merged[c] = a[ca];
+                    ca++;
+                }
+                else
+                {
+                    merged[c] = b[cb];
+                    cb++;
+                }
+                c++;
+            }
+            Console.WriteLine("[{0}]", string.Join(", ", merged));
+        }
 
+        /// <summary>
+        /// ex10  encontrar o menor e o maior valor num array numérico
+        /// </summary>
+        private static void MaiorMenor()
+        {
+            double[] a = InputRequest.GetDoubleArray();
+            double bigger=a[0], smaller=a[0];
+            foreach (var item in a)
+            {
+                if (item > bigger)
+                    bigger = item;
+                else if (item < smaller)
+                    smaller = item;
+            }
+            Console.WriteLine($"Menor Valor: {smaller}; Maior Valor: {bigger}");
+        }
+
+        /// <summary>
+        /// ex11 separar os números ímpares dos pares num array numérico
+        /// </summary>
+        private static void ParImpar()
+        {
+            int[] a = InputRequest.GetIntArray();
+            string p = "", i = "";
+            foreach (var item in a)
+            {
+                if (item % 2 == 0)
+                    p += $"{item}; ";
+                else
+                    i += $"{item}; ";
+            }
+            Console.WriteLine($"Pares: {p}");
+            Console.WriteLine($"Ímpares: {i}");
+        }
+
+        private static void ex12()
+        {
+
+        }
     }
 }
