@@ -353,9 +353,167 @@ namespace Ficha15
             Console.WriteLine($"Ímpares: {i}");
         }
 
-        private static void ex12()
+        private static void ex12(string opc="")
         {
-
+            if (opc == "")
+            {
+                while (true)
+                {
+                    opc = InputRequest.RequestString("Escolha a alinea: ");
+                    switch (opc)
+                    {
+                        case "a":
+                            ex12("a");
+                            return;
+                        case "b":
+                            ex12("b");
+                            return;
+                        case "c":
+                            ex12("c");
+                            return;
+                        case "d":
+                            ex12("d");
+                            return;
+                        case "e":
+                            ex12("e");
+                            return;
+                        case "f":
+                            ex12("f");
+                            return;
+                        default:
+                            return;
+                    }
+                }
+            }
+            else
+            {
+                string[] a = InputRequest.GetStrArray();
+                string[] b = a;
+                switch (opc)
+                {
+                    case "a":
+                        b = AddToBeginning(a);
+                        //b = AddToArray(a,"beg");
+                        break;
+                    case "b":
+                        b = AddToEnd(a);
+                        //b = AddToArray(a,"end");
+                        break;
+                    case "c":
+                        b = AddToArray(a);
+                        break;
+                    case "d":
+                        b = RemoveFromArray(a, "beg");
+                        break;
+                    case "e":
+                        b = RemoveFromArray(a, "end");
+                        break;
+                    case "f":
+                        b = RemoveFromArray(a);
+                        break;
+                }
+                Console.WriteLine($"\nArray Inicial: [{string.Join(", ", a)}]");
+                Console.WriteLine($"Array Final:   [{string.Join(", ", b)}]");
+            }
         }
+
+        /// <summary>
+        /// ex12 a) Colocar um elemento no início do array
+        /// </summary>
+        public static String[] AddToBeginning(String[] a)
+        {
+            string value = InputRequest.RequestString("Qual o valor a adicionar?");
+            string[] b = new string[Contar(a) + 1];
+            b[0] = value;
+            for (int i = 1; i < Contar(b); i++)
+            {
+                b[i] = a[i - 1];
+            }
+            return b;
+        }
+
+        /// <summary>
+        /// ex12 b. Colocar um elemento no fim do array
+        /// </summary>
+        public static String[] AddToEnd(String[] a)
+        {
+            string value = InputRequest.RequestString("Qual o valor a adicionar?");
+            string[] b = new string[Contar(a) + 1];
+            for (int i = 0; i < Contar(b); i++)
+            {
+                if (i == Contar(b) - 1)
+                    b[i] = value;
+                else
+                    b[i] = a[i];
+            }
+            return b;
+        }
+
+        /// <summary>
+        /// ex12 c. Colocar um elemento num array
+        /// </summary>
+        public static String[] AddToArray(String[] a, string mod="")
+        {
+            int pos=-1;
+            if (mod == "beg")
+                pos = 0;
+            else if (mod == "end")
+                pos = Contar(a);
+            else
+                while (true)
+                {
+                    pos = InputRequest.RequestInt("Posição onde colocar o elemento?");
+                    if (pos > Contar(a) || pos < 0)
+                        Console.WriteLine($"Posição não válida! Escolha um valor de 0 a {Contar(a)}.");
+                    else
+                        break;
+                }
+            string value = InputRequest.RequestString("Qual o valor a adicionar?");
+            string[] b = new string[Contar(a) + 1];
+            for (int i = 0; i < Contar(b); i++)
+            {
+                if (i == pos)
+                    b[i] = value;
+                else if (i < pos)
+                    b[i] = a[i];
+                else
+                    b[i] = a[i - 1];
+            }
+            return b;
+        }
+
+        /// <summary>
+        /// ex12 d. mod="beg" Remover um elemento do início do array
+        /// ex12 e. mod="end" Remover um elemento do fim do array
+        /// ex12 f. Remover um elemento de um array
+        /// </summary>
+        public static String[] RemoveFromArray(String[] a, string mod = "")
+        {
+            int pos = -1;
+            if (mod == "beg")
+                pos = 0;
+            else if (mod == "end")
+                pos = Contar(a)-1;
+            else
+                while (true)
+                {
+                    pos = InputRequest.RequestInt("Posição onde remover o elemento?");
+                    if (pos > Contar(a) || pos < 0)
+                        Console.WriteLine($"Posição não válida! Escolha um valor de 0 a {Contar(a)-1}.");
+                    else
+                        break;
+                }
+            string[] b = new string[Contar(a) - 1];
+            for (int i = 0; i < Contar(a)-1; i++)
+            {
+                if (i < pos)
+                    b[i] = a[i];
+                else if (i>pos)
+                    b[i-1] = a[i];
+            }
+            return b;
+        }
+
+        /*Solicitar um pivô e dividir o array em dois arrays com base no valor do pivô.*/
     }
 }

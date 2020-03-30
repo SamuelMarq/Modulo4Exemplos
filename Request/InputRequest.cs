@@ -18,10 +18,17 @@ namespace Common
         /// <summary>
         /// Requests an input for an int value
         /// </summary>
-        public static int RequestInt(string message)
+        public static int RequestInt(string message, bool biggerThan0=false)
         {
+            
             Console.WriteLine("\n" + message);
-            return Conversoes.ConverterStringParaInt(Console.ReadLine());
+            int n=Conversoes.ConverterStringParaInt(Console.ReadLine());
+            if (biggerThan0&&n<1)
+            {
+                Console.WriteLine("O Valor tem de ser maior que zero!");
+                n=RequestInt(message, true);
+            }
+            return n;
         }
 
         /// <summary>
@@ -39,7 +46,7 @@ namespace Common
         public static int[] GetIntArray(int t=-1)
         {
             if (t==-1)
-                t = RequestInt("Quantos elementos tem o Array?");
+                t = RequestInt("Quantos elementos tem o Array?",true);
             string[] a = new String[t];
             for (int i = 0; i < t; i++)
             {
@@ -61,7 +68,7 @@ namespace Common
         public static string[] GetStrArray(int t=-1)
         {
             if (t == -1)
-                t = RequestInt("Quantos elementos tem o Array?");
+                t = RequestInt("Quantos elementos tem o Array?", true);
             string[] a = new String[t];
             for (int i = 0; i < t; i++)
             {
@@ -77,7 +84,7 @@ namespace Common
         public static double[] GetDoubleArray(int t = -1)
         {
             if (t == -1)
-                t = RequestInt("Quantos elementos tem o Array?");
+                t = RequestInt("Quantos elementos tem o Array?", true);
             double[] a = new double[t];
             for (int i = 0; i < t; i++)
             {
