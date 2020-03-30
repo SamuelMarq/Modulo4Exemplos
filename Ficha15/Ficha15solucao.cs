@@ -62,9 +62,9 @@ namespace Ficha15
                     case 12:
                         ex12();
                         break;
-                    /*case 13:
-                        ();
-                        break;*/
+                    case 13:
+                        ex13();
+                        break;
                 }
             }
         }
@@ -90,7 +90,7 @@ namespace Ficha15
         {
             Array a = InputRequest.GetIntArray(10);
             Console.WriteLine();
-            for (int i = a.Length-1; i >= 0; i--)
+            for (int i = a.Length - 1; i >= 0; i--)
             {
                 Console.Write($"{a.GetValue(i)}; ");
             }
@@ -108,7 +108,7 @@ namespace Ficha15
             {
                 s += item;
             }
-            Console.WriteLine("Soma = "+s);
+            Console.WriteLine("Soma = " + s);
         }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace Ficha15
             int[] b = new int[12];
             for (int i = 0; i < a.Length; i++)
             {
-                b[i]= a[i];
+                b[i] = a[i];
             }
             foreach (var item in b)
             {
@@ -168,7 +168,7 @@ namespace Ficha15
             {
                 var item = elements[i];
                 var am = amount[i];
-                if (item!=string.Empty&&am>1)
+                if (item != string.Empty && am > 1)
                 {
                     Console.Write($"{item}: {am}\n");
                 }
@@ -201,7 +201,7 @@ namespace Ficha15
             {
                 var item = elements[i];
                 var am = amount[i];
-                if (item!=string.Empty&&am==1)
+                if (item != string.Empty && am == 1)
                 {
                     Console.Write($"{item}; ");
                 }
@@ -216,7 +216,7 @@ namespace Ficha15
         {
             string[] a = InputRequest.GetStrArray();
             int c = Contar(a);
-            int [][] v = new int[c][];
+            int[][] v = new int[c][];
             for (int i = 0; i < c; i++)
             {
                 int c_ai = a[i].Length;
@@ -230,7 +230,7 @@ namespace Ficha15
             }
             Array tempA;
             string temp = "";
-            while (c>0)
+            while (c > 0)
             {
                 c--;
                 for (int i = 0; i < c; i++)
@@ -251,12 +251,12 @@ namespace Ficha15
                             v[i + 1] = tempA.Cast<int>().ToArray();
                             continue;
                         }
-                                
+
                     int v1 = 0, v2 = 0, ii = 0;
                     while (v1 == v2)
                     {
                         v1 = v[i][ii];
-                        v2 = v[i+1][ii];
+                        v2 = v[i + 1][ii];
                         ii++;
                     }
                     if (v1 > v2)
@@ -282,12 +282,12 @@ namespace Ficha15
             int[] b = InputRequest.GetIntArray();
             int totalL = Contar(a) + Contar(b);
             int[] merged = new int[totalL];
-            int c = 0, ca=0, cb=0;
-            while (c<totalL)
+            int c = 0, ca = 0, cb = 0;
+            while (c < totalL)
             {
-                if (ca>=a.Length)
+                if (ca >= a.Length)
                 {
-                    while (cb<b.Length)
+                    while (cb < b.Length)
                     {
                         merged[c] = b[cb];
                         cb++;
@@ -324,7 +324,7 @@ namespace Ficha15
         private static void MaiorMenor()
         {
             double[] a = InputRequest.GetDoubleArray();
-            double bigger=a[0], smaller=a[0];
+            double bigger = a[0], smaller = a[0];
             foreach (var item in a)
             {
                 if (item > bigger)
@@ -353,7 +353,7 @@ namespace Ficha15
             Console.WriteLine($"Ímpares: {i}");
         }
 
-        private static void ex12(string opc="")
+        private static void ex12(string opc = "")
         {
             if (opc == "")
             {
@@ -392,12 +392,10 @@ namespace Ficha15
                 switch (opc)
                 {
                     case "a":
-                        b = AddToBeginning(a);
-                        //b = AddToArray(a,"beg");
+                        b = AddToArray(a, "beg");
                         break;
                     case "b":
-                        b = AddToEnd(a);
-                        //b = AddToArray(a,"end");
+                        b = AddToArray(a, "end");
                         break;
                     case "c":
                         b = AddToArray(a);
@@ -418,43 +416,13 @@ namespace Ficha15
         }
 
         /// <summary>
-        /// ex12 a) Colocar um elemento no início do array
+        /// ex12 a) mod="beg" Colocar um elemento no início do array
+        /// ex12 b) mod="end" Colocar um elemento no fim do array
+        /// ex12 c) Colocar um elemento num array
         /// </summary>
-        public static String[] AddToBeginning(String[] a)
+        public static String[] AddToArray(String[] a, string mod = "")
         {
-            string value = InputRequest.RequestString("Qual o valor a adicionar?");
-            string[] b = new string[Contar(a) + 1];
-            b[0] = value;
-            for (int i = 1; i < Contar(b); i++)
-            {
-                b[i] = a[i - 1];
-            }
-            return b;
-        }
-
-        /// <summary>
-        /// ex12 b. Colocar um elemento no fim do array
-        /// </summary>
-        public static String[] AddToEnd(String[] a)
-        {
-            string value = InputRequest.RequestString("Qual o valor a adicionar?");
-            string[] b = new string[Contar(a) + 1];
-            for (int i = 0; i < Contar(b); i++)
-            {
-                if (i == Contar(b) - 1)
-                    b[i] = value;
-                else
-                    b[i] = a[i];
-            }
-            return b;
-        }
-
-        /// <summary>
-        /// ex12 c. Colocar um elemento num array
-        /// </summary>
-        public static String[] AddToArray(String[] a, string mod="")
-        {
-            int pos=-1;
+            int pos = -1;
             if (mod == "beg")
                 pos = 0;
             else if (mod == "end")
@@ -483,9 +451,9 @@ namespace Ficha15
         }
 
         /// <summary>
-        /// ex12 d. mod="beg" Remover um elemento do início do array
-        /// ex12 e. mod="end" Remover um elemento do fim do array
-        /// ex12 f. Remover um elemento de um array
+        /// ex12 d) mod="beg" Remover um elemento do início do array
+        /// ex12 e) mod="end" Remover um elemento do fim do array
+        /// ex12 f) Remover um elemento de um array
         /// </summary>
         public static String[] RemoveFromArray(String[] a, string mod = "")
         {
@@ -493,27 +461,82 @@ namespace Ficha15
             if (mod == "beg")
                 pos = 0;
             else if (mod == "end")
-                pos = Contar(a)-1;
+                pos = Contar(a) - 1;
             else
                 while (true)
                 {
                     pos = InputRequest.RequestInt("Posição onde remover o elemento?");
                     if (pos > Contar(a) || pos < 0)
-                        Console.WriteLine($"Posição não válida! Escolha um valor de 0 a {Contar(a)-1}.");
+                        Console.WriteLine($"Posição não válida! Escolha um valor de 0 a {Contar(a) - 1}.");
                     else
                         break;
                 }
             string[] b = new string[Contar(a) - 1];
-            for (int i = 0; i < Contar(a)-1; i++)
+            for (int i = 0; i < Contar(a) - 1; i++)
             {
                 if (i < pos)
                     b[i] = a[i];
-                else if (i>pos)
-                    b[i-1] = a[i];
+                else if (i > pos)
+                    b[i - 1] = a[i];
             }
             return b;
         }
 
-        /*Solicitar um pivô e dividir o array em dois arrays com base no valor do pivô.*/
+
+        private static void ex13()
+        {
+            var a = InputRequest.GetStrArray();
+            string[][] splitedArray;
+            string pivot = "";
+            int pivotPos = -1;
+            while (pivotPos<0)
+            {
+                pivot = InputRequest.RequestString("Escolha um valor do array para pivot");
+                pivotPos = FindInArray(a, pivot);
+                if (pivotPos < 0)
+                {
+                    Console.WriteLine($"{pivot} não faz parte do array");
+                    Console.WriteLine($"\nArray: [{string.Join(", ", a)}]");
+                }
+            }
+            splitedArray = PivotSplit(a, pivotPos);
+            Console.WriteLine($"\nArray 1: [{string.Join(", ", splitedArray[0])}]");
+            Console.WriteLine($"Pivot: {pivot}");
+            Console.WriteLine($"Array 2: [{string.Join(", ", splitedArray[1])}]");
+        }
+
+        /// <summary>
+        /// ex13 Solicitar um pivô e dividir o array em dois arrays com base no valor do pivô
+        /// </summary>
+        public static string[][] PivotSplit(string[] a, int pivotPos)
+        {
+            string[][] two = new string[2][];
+            if (pivotPos == -1)
+                return two;
+            two[0] = new string[pivotPos];
+            two[1] = new string[a.Length-pivotPos-1];
+            for (int i = 0; i < pivotPos; i++)
+            {
+                two[0][i] = a[i];
+            }
+            for (int i = pivotPos+1; i < a.Length; i++)
+            {
+                two[1][i-(pivotPos+1)] = a[i];
+            }
+            return two;
+        }
+
+        /// <summary>
+        /// Devolve o primeiro indice de um valor numa array, se não existir devolve -1
+        /// </summary>
+        public static int FindInArray(string[] a, string item)
+        {
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (a[i] == item)
+                    return i;
+            }
+            return -1;    
+        }
     }
 }
