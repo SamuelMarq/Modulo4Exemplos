@@ -31,6 +31,9 @@ namespace Ficha13
                     case 2:
                         JogoDoGalo();
                         break;
+                    case 3:
+                        JogoDaForca();
+                        break;
                 }
             }
         }
@@ -321,6 +324,179 @@ namespace Ficha13
             return endgame;
         }
 
+        #endregion
+
+        #region Jogo da Forca
+
+        private static void JogoDaForca()
+        {
+            int fails = 0;
+            string wordGame = "", WordTry = "";
+            Printer.PrintHeader("Jogo Da Forca", 2, 2, ConsoleColor.Green, ConsoleColor.Yellow, '#');
+            PrintForca(fails);
+            wordGame = GetGameWord(out int length);
+            for (int i = 0; i < length; i++)
+            {
+                WordTry += "_";
+            }
+            Console.WriteLine("\nPalavra a descobrir:");
+            Console.WriteLine($"  {WordTry}");
+            Console.WriteLine("\nEscolha uma letra:");
+            
+
+        }
+
+        /// <summary>
+        /// Prints the image for the current number on attempts, if win==true it displays the victory image
+        /// </summary>
+        private static void PrintForca(int fails,bool win=false)
+        {
+            string s = "";
+            if (win)
+            {
+                Printer.PrintHeader("Victory!", 2, 3, ConsoleColor.DarkGreen, ConsoleColor.Green, '▓');
+                s += "      _______\n";
+                s += "     |/      |\n";
+                s += "     |       |\n";
+                s += "     |\n";
+                s += "     |\n";
+                s += "     |            -----     @\n";
+                s += "     |              --   .^/L.\n";
+                s += "     |           ----   , /-,\n";
+                s += " ____|____               ` /\n";
+            }
+            else if (fails==0)
+            {
+                s+= "      _______\n";
+                s+= "     |/      |\n";
+                s+= "     |       |\n";
+                s+= "     |\n";
+                s+= "     |\n";
+                s+="     |\n";
+                s+="     |\n";
+                s+="     |\n";
+                s+=" ____|____\n";
+            }
+            else if (fails==1)
+            {
+                s += "      _______\n";
+                s += "     |/      |\n";
+                s += "     |       |\n";
+                s += "     |      (_)\n";
+                s += "     |\n";
+                s += "     |\n";
+                s += "     |\n";
+                s += "     |\n";
+                s += " ____|____\n";
+            }
+            else if (fails == 2)
+            {
+                s += "      _______\n";
+                s += "     |/      |\n";
+                s += "     |       |\n";
+                s += "     |      (_)\n";
+                s += "     |       |\n";
+                s += "     |       |\n";
+                s += "     |\n";
+                s += "     |\n";
+                s += " ____|____\n";
+            }
+            else if (fails == 3)
+            {
+                s += "      _______\n";
+                s += "     |/      |\n";
+                s += "     |       |\n";
+                s += "     |      (_)\n";
+                s += "     |      /|\n";
+                s += "     |       |\n";
+                s += "     |\n";
+                s += "     |\n";
+                s += " ____|____\n";
+            }
+            else if (fails == 4)
+            {
+                s += "      _______\n";
+                s += "     |/      |\n";
+                s += "     |       |\n";
+                s += "     |      (_)\n";
+                s += "     |      /|\\\n";
+                s += "     |       |\n";
+                s += "     |\n";
+                s += "     |\n";
+                s += " ____|____\n";
+            }
+            else if (fails == 5)
+            {
+                s += "      _______\n";
+                s += "     |/      |\n";
+                s += "     |       |\n";
+                s += "     |      (_)\n";
+                s += "     |      /|\\\n";
+                s += "     |       |\n";
+                s += "     |      /\n";
+                s += "     |\n";
+                s += " ____|____\n";
+            }
+            else if (fails == 6)
+            {
+                s += "      _______\n";
+                s += "     |/      |\n";
+                s += "     |       |\n";
+                s += "     |      (_)\n";
+                s += "     |      /|\\\n";
+                s += "     |       |\n";
+                s += "     |      / \\\n";
+                s += "     |\n";
+                s += " ____|____\n";
+                Printer.PrintHeader("Game Over!", 2, 3, ConsoleColor.DarkRed, ConsoleColor.Red, '▓');
+            }
+             Console.WriteLine(s);
+        }
+
+        /// <summary>
+        /// Returns a random word from a selection of ten an the lenght of the word
+        /// </summary>
+        private static string GetGameWord(out int length)
+        {
+            Random rdm = new Random();
+            int r = rdm.Next(1, 11);
+            string word="";
+            switch (r)
+            {
+                case 1:
+                    word = "ola";
+                    break;
+                case 2:
+                    word = "banana";
+                    break;
+                case 3:
+                    word = "gorila";
+                    break;
+                case 4:
+                    word = "material";
+                    break;
+                case 5:
+                    word = "arroz";
+                    break;
+                case 6:
+                    word = "fogo";
+                    break;
+                case 7:
+                    word = "fernando";
+                    break;
+                case 8:
+                    word = "feriado";
+                    break;
+                case 9:
+                    word = "alperce";
+                    break;
+                case 10:
+                    word = "dez";
+                    break;
+            }
+            length = word.Length;
+            return word;
+        }
         #endregion
     }
 }
