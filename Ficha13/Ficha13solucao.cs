@@ -331,19 +331,43 @@ namespace Ficha13
         private static void JogoDaForca()
         {
             int fails = 0;
-            string wordGame = "", WordTry = "";
+            sbyte suc;
+            string wordGame = "", wordTry = "", usedLts = "";
+            string ls = "abcdefghijklmnopqrstuvxwyz";
+            Console.Clear();
             Printer.PrintHeader("Jogo Da Forca", 2, 2, ConsoleColor.Green, ConsoleColor.Yellow, '#');
             PrintForca(fails);
             wordGame = GetGameWord(out int length);
             for (int i = 0; i < length; i++)
             {
-                WordTry += "_";
+                wordTry += "-";
             }
-            Console.WriteLine("\nPalavra a descobrir:");
-            Console.WriteLine($"  {WordTry}");
-            Console.WriteLine("\nEscolha uma letra:");
-            
-
+            suc = GameRounds(ref wordGame, ref wordTry, ref usedLts, ref ls, true);
+            fails = (suc == -1) ? fails + 1 : fails;
+            Console.Clear();
+            PrintForca(fails);
+            while (fails<6)
+            {
+                suc = GameRounds(ref wordGame, ref wordTry, ref usedLts, ref ls);
+                fails = (suc==-1) ? fails+1 : fails;
+                if (suc < 1 && fails < 6)
+                {
+                    Console.Clear();
+                    PrintForca(fails);
+                }
+                else if (suc==1)
+                {
+                    Console.WriteLine($"\nA Palavra é {wordGame}\n");
+                    PrintForca(fails, true);
+                    return;
+                }
+            }
+            Console.Clear();
+            Console.BackgroundColor=ConsoleColor.DarkRed;
+            Console.Write($"\nA Palavra era {wordGame}");
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.WriteLine("");
+            PrintForca(fails);
         }
 
         /// <summary>
@@ -439,7 +463,7 @@ namespace Ficha13
             }
             else if (fails == 6)
             {
-                s += "      _______\n";
+                s += "\n      _______\n";
                 s += "     |/      |\n";
                 s += "     |       |\n";
                 s += "     |      (_)\n";
@@ -496,6 +520,107 @@ namespace Ficha13
             }
             length = word.Length;
             return word;
+        }
+
+        /// <summary>
+        /// Takes a string with the valid leters and returns a valid letter from the user 
+        /// </summary>
+        private static char GetCharacter(string ls)
+        {
+            string r;
+            char l;
+            Console.WriteLine("\nEscolha uma letra:");
+            while (true)
+            {
+                r = Console.ReadLine().ToLower();
+                l = r[0];
+                if (ls.Contains(l))
+                    break;
+                else
+                    Console.WriteLine($" '{l}' Não É uma Letra Válida!\nEscolha uma letra diferente:");
+            }
+            return l;
+        }
+
+        /// <summary>
+        /// Takes the word you're trying to guess and returns true if you guess it and false if you don't
+        /// </summary>
+        private static bool GuessWord(string wordGame)
+        {
+            Console.WriteLine("Qual a palavra?");
+            if (Console.ReadLine().ToLower() == wordGame)
+                return true;
+            return false;
+        }
+
+        /// <summary>
+        /// Has the code to run a round of playing it changes the values of wordGame, wordTry, usedLts and ls.
+        /// Returns -1 if failed to get a correct letter; 0 if it got a correct letter and 1 if it got the word
+        /// </summary>
+        private static sbyte GameRounds(ref string wordGame, ref string wordTry, ref string usedLts, ref string ls, bool round1=false)
+        {
+            char l;
+            string ans="n";
+            bool suc = false;
+            if (round1)
+            {
+                Console.WriteLine("\nPalavra a descobrir:");
+                Console.WriteLine($"  {wordTry}");
+            }
+            else
+            {
+                Console.WriteLine("\nPalavra a descobrir:");
+                Console.WriteLine($"  {wordTry}");
+                Console.WriteLine("\nLetras Usadas:");
+                Console.WriteLine($"  {usedLts}");
+                Console.WriteLine("\nQueres tentar advinhar a palavra? (responde s ou n)");
+                while (true)
+                {
+                    ans = Console.ReadLine();
+                    if (ans == "n" | ans == "s")
+                        break;
+                    else
+                        Console.WriteLine("\nQueres tentar advinhar a palavra? (responde s ou n)");
+                }
+            }
+            if (ans=="n")
+            {
+                l = GetCharacter(ls);
+                for (int i = 0; i < ls.Length; i++)
+                {
+                    if (l==ls[i])
+                    {
+                        ls=ls.Remove(i,1);
+                        break;
+                    }
+                }
+                for (int i = 0; i < wordGame.Length; i++)
+                {
+                    if (l==wordGame[i])
+                    {
+                        suc = true;
+                        wordTry=wordTry.Remove(i,1);
+                        wordTry=wordTry.Insert(i,l.ToString());
+                    }
+                }
+                usedLts += $"{l}, ";
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Palavra a descobrir:");
+                Console.WriteLine($"  {wordTry}");
+                bool w = GuessWord(wordGame);
+                if (w)
+                    return 1;
+            }
+            if (suc)
+                if (wordGame == wordTry)
+                    return 1;
+                else
+                    return 0;
+            else
+                return -1;
         }
         #endregion
     }
