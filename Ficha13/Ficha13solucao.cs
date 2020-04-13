@@ -12,11 +12,16 @@ namespace Ficha13
         {
             int ex;
 
+            Console.Clear();
             while (true)
             {
                 Console.WriteLine("\nQual o exercicio?");
                 Console.WriteLine("Para voltar escolha 0");
                 Console.WriteLine("Para fechar a aplicação escolha -1");
+                Console.WriteLine("1 - Calculadora");
+                Console.WriteLine("2 - Jogo Do Galo");
+                Console.WriteLine("3 - Jogo Da Forca");
+                Console.WriteLine("4 - Pedra, Papel ou Tesoura\n");
                 ex = Conversoes.ConverterStringParaInt(Console.ReadLine());
                 switch (ex)
                 {
@@ -33,6 +38,9 @@ namespace Ficha13
                         break;
                     case 3:
                         JogoDaForca();
+                        break;
+                    case 4:
+                        Start();
                         break;
                 }
             }
@@ -622,6 +630,143 @@ namespace Ficha13
             else
                 return -1;
         }
+        #endregion
+
+        #region PedraPapelOuTesoura
+
+        private static void Start()
+        {
+            int jogadasV, winsJ=0, winsC=0;
+            string nome, jogadaJ, jogadaC;
+            Console.Clear();
+            Printer.PrintHeader("Pedra, Papel ou Tesoura", 2, 2, ConsoleColor.Green, ConsoleColor.Yellow, '#');
+            jogadasV = InputRequest.RequestInt("Quantas jogadas são necessárias para um jogador vencer?", true);
+            nome = InputRequest.RequestString("Qual o nome do jogador?");
+            while (nome.Length > 20)
+                nome = InputRequest.RequestString("O nome tem de ter menos de 20 caracteres");
+            while (true)
+            {
+                Console.Clear();
+                Pontuacao(nome, winsJ, winsC, jogadasV);
+                jogadaJ = JogadaJ();
+                jogadaC = JogadaC();
+                Console.WriteLine($"Computador:\n{jogadaC}");
+                int w = RoundW(jogadaC, jogadaJ);
+                if (w == -1)
+                {
+                    winsC++;
+                    Console.WriteLine("Vitória do Computador!\n");
+                }
+                else if (w == 1)
+                {
+                    Console.WriteLine($"Vitória do Jogador {nome}!\n");
+                    winsJ++;
+                }
+                else
+                    Console.WriteLine("Empate!\n");
+                if (winsJ == jogadasV)
+                {
+                    Console.WriteLine("");
+                    Printer.PrintHeader("Victory!", 2, 3, ConsoleColor.DarkGreen, ConsoleColor.Green, '▓');
+                    return;
+                }
+                else if (winsC == jogadasV)
+                {
+                    Console.WriteLine("");
+                    Printer.PrintHeader("Game Over!", 2, 3, ConsoleColor.DarkRed, ConsoleColor.Red, '▓');
+                    return;
+                }
+                Console.WriteLine("Perssione qualquer tecla para continuar");
+                Console.ReadKey();
+            }
+
+
+
+        }
+
+        /// <summary>
+        /// Escolhe uma jogada aleatoria para o computador
+        /// </summary>
+        private static string JogadaC()
+        {
+            int j = new Random().Next(1,4);
+            string jogada="";
+            switch (j)
+            {
+                case 1:
+                    jogada = "pedra";
+                    break;
+                case 2:
+                    jogada = "papel";
+                    break;
+                case 3:
+                    jogada = "tesoura";
+                    break;
+            }
+            return jogada;
+        }
+
+        /// <summary>
+        /// Devolve a jogada escolhida pelo user
+        /// </summary>
+        private static string JogadaJ()
+        {
+            string jogada = InputRequest.RequestString("Qual a tua jogada?").ToLower();
+            while (jogada!="tesoura" && jogada!="pedra" && jogada !="papel")
+            {
+                jogada = InputRequest.RequestString("Tens de escolher pedra, papel ou tesoura.").ToLower();
+            }
+            return jogada;
+        }
+
+        /// <summary>
+        /// Devolve 1 se o jogador ganhar, -1 se o computador ganhar e 0 se for empate
+        /// </summary>
+        private static int RoundW(string jogadaC, string jogadaJ)
+        {
+            if (jogadaC == jogadaJ)
+                return 0;
+            else if (jogadaC=="pedra")
+            {
+                if (jogadaJ == "papel")
+                    return 1;
+                else
+                    return -1;
+            }
+            else if (jogadaC == "papel")
+            {
+                if (jogadaJ == "pedra")
+                    return -1;
+                else
+                    return 1;
+            }
+            else
+            {
+                if (jogadaJ == "pedra")
+                    return 1;
+                else
+                    return -1;
+            }
+        }
+
+        /// <summary>
+        /// Imprime uma tabela com a pontuação
+        /// </summary>
+        private static void Pontuacao(string nome, int winsJ, int winsC, int jogadasV) 
+        {
+            string s;
+            nome += ":  ";
+            while (nome.Length<22)
+                nome += " ";
+            s = "╔═══════════════════════╗\n";
+            s += $"║Jogadas para vencer:  {jogadasV}║";
+            s += $"\n║-----------------------║";
+            s += $"\n║Computador:           {winsC}║";
+            s += $"\n║{nome}{winsJ}║";
+            s += "\n╚═══════════════════════╝";
+            Console.WriteLine(s);
+        }
+
         #endregion
     }
 }
