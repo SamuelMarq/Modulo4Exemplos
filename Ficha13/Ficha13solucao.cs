@@ -84,14 +84,17 @@ namespace Ficha13
             {
                 if (firstrun)
                 {
+                    PrintCalc();
                     n = LerNumEConverter2();
+                    PrintCalc(n.ToString());
                     firstrun = false;
                 }
                 Console.WriteLine("\nPara sair escolha 'X'");
                 Console.WriteLine("Para apagar escolha 'C'\n");
                 Console.WriteLine("Qual a operação\n");
                 op = Console.ReadLine()[0];
-                
+                if(op == '+' || op == '-' || op == '*' || op == '/' || op == '%')
+                    PrintCalc(n.ToString()+op);
                 switch (op)
                 {
                     case 'X':
@@ -125,7 +128,7 @@ namespace Ficha13
             decimal n2;
             n2 = LerNumEConverter2();
             var n3 = n1 + n2;
-            Console.WriteLine($"{n1}+{n2}={n3}");
+            PrintCalc($"{n1}+{n2}={n3}");
             return n3;
         }
 
@@ -134,7 +137,7 @@ namespace Ficha13
             decimal n2;
             n2 = LerNumEConverter2();
             var n3 = n1 - n2;
-            Console.WriteLine($"{n1}-{n2}={n3}");
+            PrintCalc($"{n1}-{n2}={n3}");
             return n3;
         }
 
@@ -143,7 +146,7 @@ namespace Ficha13
             decimal n2;
             n2 = LerNumEConverter2();
             var n3 = n1 * n2;
-            Console.WriteLine($"{n1}*{n2}={n3}");
+            PrintCalc($"{n1}*{n2}={n3}");
             return n3;
         }
 
@@ -165,7 +168,7 @@ namespace Ficha13
                     Console.WriteLine("Choose another number");
                 }
             }
-            Console.WriteLine($"{n1}/{n2}={n3}");
+            PrintCalc($"{n1}/{n2}={n3}");
             return n3;
         }
 
@@ -187,14 +190,36 @@ namespace Ficha13
                     Console.WriteLine("Choose another number");
                 }
             }
-            Console.WriteLine($"{n1}%{n2}={n3}");
+            PrintCalc($"{n1}%{n2}={n3}");
             return n3;
         }
 
 
-        private static void PrintCalc(string display = "")
+        private static void PrintCalc(string display = "               ")
         {
-            
+            Console.Clear();
+            while (display.Length<21)
+            {
+                display = " " + display;
+            }
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.Write("\n                    ");
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.Write(" X ");
+            Console.BackgroundColor = ConsoleColor.Gray;
+            Console.Write("\n ");
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.Write(display);
+            Console.BackgroundColor = ConsoleColor.Gray;
+            Console.Write(" ");
+            Console.Write("\n             C     =   ");
+            Console.Write("\n   7    8    9     %   ");
+            Console.Write("\n   4    5    6     /   ");
+            Console.Write("\n   1    2    3     *   ");
+            Console.Write("\n   0    .    +     -   \n");
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.White;
         }
         #endregion
 
@@ -202,15 +227,15 @@ namespace Ficha13
         private static void JogoDoGalo()
         {
             char n1 = ' ', n2 = ' ', n3 = ' ', n4 = ' ', n5 = ' ', n6 = ' ', n7 = ' ', n8 = ' ', n9 = ' ';
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("\nJogo do Galo");
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.Clear();
+            Printer.PrintHeader("Jogo Do Galo", 2, 2, ConsoleColor.Green, ConsoleColor.Yellow, '#');
             Console.WriteLine($"\n{n1}|{n2}|{n3}\n-----\n{n4}|{n5}|{n6}\n-----\n{n7}|{n8}|{n9}\n");
             for (int i = 0; true; i++)
             {
                 if (i%2==0)
                 {
                     Jogada(i, 1, ref n1, ref n2, ref n3, ref n4, ref n5, ref n6, ref n7, ref n8, ref n9);
+                    Console.Clear();
                     Console.WriteLine($"\n{n1}|{n2}|{n3}\n-----\n{n4}|{n5}|{n6}\n-----\n{n7}|{n8}|{n9}\n");
                     var e = VictCond(1, ref n1, ref n2, ref n3, ref n4, ref n5, ref n6, ref n7, ref n8, ref n9);
                     if (e)
@@ -219,6 +244,7 @@ namespace Ficha13
                 else
                 {
                     Jogada(i, 2, ref n1, ref n2, ref n3, ref n4, ref n5, ref n6, ref n7, ref n8, ref n9);
+                    Console.Clear();
                     Console.WriteLine($"\n{n1}|{n2}|{n3}\n-----\n{n4}|{n5}|{n6}\n-----\n{n7}|{n8}|{n9}\n");
                     var e = VictCond(2, ref n1, ref n2, ref n3, ref n4, ref n5, ref n6, ref n7, ref n8, ref n9);
                     if (e)
@@ -829,7 +855,7 @@ namespace Ficha13
             s += $"\n║-----------------------║";
             s += $"\n║Computador:           {winsC}║";
             s += $"\n║{nome}{winsJ}║";
-            s += "\n╚═══════════════════════╝";
+            s += "\n╚═══════════════════════╝\n";
             Console.WriteLine(s);
         }
 
