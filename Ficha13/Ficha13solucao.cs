@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Common;
 
 namespace Ficha13
@@ -72,13 +73,13 @@ namespace Ficha13
         /// <summary>
         /// Calculadora
         /// </summary>
-        public static void Calculadora()
+        private static void Calculadora()
         {
             char op;
             decimal n=0;
             bool firstrun = true;
-
-            Console.WriteLine("\nCalculadora");
+            Console.Clear();
+            Printer.PrintHeader("Calculadora", 2, 2, ConsoleColor.White, ConsoleColor.White, '#');
             while (true)
             {
                 if (firstrun)
@@ -112,11 +113,14 @@ namespace Ficha13
                     case '/':
                         n = Div(n);
                         break;
+                    case '%':
+                        n = Res(n);
+                        break;
                 }
             }
         }
 
-        public static Decimal Soma(decimal n1)
+        private static Decimal Soma(decimal n1)
         {
             decimal n2;
             n2 = LerNumEConverter2();
@@ -125,7 +129,7 @@ namespace Ficha13
             return n3;
         }
 
-        public static Decimal Minus(decimal n1)
+        private static Decimal Minus(decimal n1)
         {
             decimal n2;
             n2 = LerNumEConverter2();
@@ -134,7 +138,7 @@ namespace Ficha13
             return n3;
         }
 
-        public static Decimal Times(decimal n1)
+        private static Decimal Times(decimal n1)
         {
             decimal n2;
             n2 = LerNumEConverter2();
@@ -143,7 +147,7 @@ namespace Ficha13
             return n3;
         }
 
-        public static Decimal Div(decimal n1)
+        private static Decimal Div(decimal n1)
         {
             decimal n2, n3;
             n3 = 0;
@@ -163,6 +167,34 @@ namespace Ficha13
             }
             Console.WriteLine($"{n1}/{n2}={n3}");
             return n3;
+        }
+
+        private static Decimal Res(decimal n1)
+        {
+            decimal n2, n3;
+            n3 = 0;
+            while (true)
+            {
+                try
+                {
+                    n2 = LerNumEConverter2();
+                    n3 = n1 % n2;
+                    break;
+                }
+                catch (DivideByZeroException)
+                {
+                    Console.WriteLine("Can't divide by 0");
+                    Console.WriteLine("Choose another number");
+                }
+            }
+            Console.WriteLine($"{n1}%{n2}={n3}");
+            return n3;
+        }
+
+
+        private static void PrintCalc(string display = "")
+        {
+            
         }
         #endregion
 
@@ -659,20 +691,22 @@ namespace Ficha13
                 }
                 else if (w == 1)
                 {
-                    Console.WriteLine($"Vitória do Jogador {nome}!\n");
                     winsJ++;
+                    Console.WriteLine($"Vitória do Jogador {nome}!\n");
                 }
                 else
                     Console.WriteLine("Empate!\n");
                 if (winsJ == jogadasV)
                 {
                     Console.WriteLine("");
+                    Pontuacao(nome, winsJ, winsC, jogadasV);
                     Printer.PrintHeader("Victory!", 2, 3, ConsoleColor.DarkGreen, ConsoleColor.Green, '▓');
                     return;
                 }
                 else if (winsC == jogadasV)
                 {
                     Console.WriteLine("");
+                    Pontuacao(nome, winsJ, winsC, jogadasV);
                     Printer.PrintHeader("Game Over!", 2, 3, ConsoleColor.DarkRed, ConsoleColor.Red, '▓');
                     return;
                 }
@@ -725,27 +759,59 @@ namespace Ficha13
         private static int RoundW(string jogadaC, string jogadaJ)
         {
             if (jogadaC == jogadaJ)
+            {
+                switch (jogadaC)
+                {
+                    case "pedra":
+                        Display('r', 'r');
+                        break;
+                    case "tesoura":
+                        Display('t', 't');
+                        break;
+                    case "papel":
+                        Display('p', 'p');
+                        break;
+                }
                 return 0;
-            else if (jogadaC=="pedra")
+            }
+            else if (jogadaC == "pedra")
             {
                 if (jogadaJ == "papel")
+                {
+                    Display('p', 'r');
                     return 1;
+                }
                 else
+                {
+                    Display('t', 'r');
                     return -1;
+                }
             }
             else if (jogadaC == "papel")
             {
                 if (jogadaJ == "pedra")
+                {
+                    Display('r', 'p');
                     return -1;
+                }
                 else
+                {
+                    Display('t', 'p');
                     return 1;
+                }
             }
             else
             {
                 if (jogadaJ == "pedra")
+                {
+                    Display('r', 't');
                     return 1;
+                }
                 else
+                {
+                    Display('p', 't');
                     return -1;
+                }
             }
         }
 
@@ -765,6 +831,70 @@ namespace Ficha13
             s += $"\n║{nome}{winsJ}║";
             s += "\n╚═══════════════════════╝";
             Console.WriteLine(s);
+        }
+
+        private static void Display(char p1, char p2, int rounds = 3)
+        {
+            for (var i = 0; i < rounds; i++)
+            {
+                var @switch = false;
+                var pos = 0;
+                while (!(@switch && pos == 0))
+                {
+                    Console.Clear();
+                    if (i == rounds - 1 && pos == 2)
+                    {
+                        DisplayResult(pos, p1, p2);
+                        Thread.Sleep(500);
+                        break;
+                    }
+                    else
+                    {
+                        DisplayResult(pos, 'r', 'r');
+                    }
+                    Thread.Sleep(50);
+                    pos = pos + (@switch ? -1 : 1);
+                    if (pos == 4) @switch = !@switch;
+                }
+            }
+        }
+
+        private static void DisplayResult(int lines, char p1, char p2)
+        {
+            while (lines > 0)
+            {
+                Console.WriteLine();
+                lines--;
+            }
+            //1
+            Console.Write("          _______");
+            Console.CursorLeft = 30;
+            Console.WriteLine(p2 == 'r' ? "  _______" : p2 == 'p' ? "       _______" : "       _______");
+
+            //2
+            Console.Write(p1 == 'r' ? "      ---'   ____)" : p1 == 'p' ? "      ---'   ____)____ " : "      ---'   ____)____");
+            Console.CursorLeft = 30;
+            Console.WriteLine(p2 == 'r' ? " (____   '---      " : p2 == 'p' ? "  ____(____   '---      " : "  ____(____   '---      ");
+
+            //3
+            Console.Write(p1 == 'r' ? "            (_____)" : "                ______)");
+            Console.CursorLeft = 30;
+            Console.WriteLine(p2 == 'r' ? "(____   '---      " : " (______");
+
+            //4
+            Console.Write(p1 == 'r' ? "            (_____)" : p1 == 'p' ? "                _______)" : "             __________)");
+            Console.CursorLeft = 30;
+            Console.WriteLine(p2 == 'r' ? "(_____)" : p2 == 'p' ? "(_______" : "(__________");
+
+            //5
+            Console.Write(p1 == 'r' ? "             (____)" : p1 == 'p' ? "               _______)" : "            (____)");
+            Console.CursorLeft = 30;
+            Console.WriteLine(p2 == 'r' ? "(____)" : p2 == 'p' ? " (_______" : "     (____)");
+
+            //6
+            Console.Write(p1 == 'r' ? "      ---.__(___) " : p1 == 'p' ? "      ---.__________)" : "      ---.__(___)");
+            Console.CursorLeft = 30;
+            Console.WriteLine(p2 == 'r' ? "  (___)__.---" : p2 == 'p' ? "   (__________.---" : "      (___)__.---");
         }
 
         #endregion
