@@ -1,9 +1,9 @@
 ﻿using System;
 using Common;
 
-namespace Ficha6
+namespace Ficha10
 {
-    public class Ficha6solucao
+    public class Ficha10solucao
     {
         /// <summary>
         /// Ficha6 ex1.1
@@ -323,7 +323,7 @@ namespace Ficha6
         /// <summary>
         /// Corre todos os exercicios da ficha 6
         /// </summary>
-        public static void Ficha6()
+        public static void Ficha10()
         {
             int ex, al;
 

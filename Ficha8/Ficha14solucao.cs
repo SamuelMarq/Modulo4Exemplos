@@ -1,14 +1,14 @@
 ﻿using System;
 using Common;
 
-namespace Ficha8
+namespace Ficha14
 {
-    public class Ficha8solucao
+    public class Ficha14solucao
     {
         /// <summary>
         /// Corre todos os exercicios da ficha 8
         /// </summary>
-        public static void Ficha8()
+        public static void Ficha14()
         {
             int ex;
 

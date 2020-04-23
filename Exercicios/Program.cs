@@ -1,10 +1,10 @@
 ﻿using System;
 using Common;
-using Ficha6;
-using Ficha7;
-using Ficha8;
+using Ficha10;
+using Ficha11;
 using Ficha12;
 using Ficha13;
+using Ficha14;
 using Ficha15;
 using Ficha16;
 
@@ -26,11 +26,11 @@ namespace Consola
                 Console.WriteLine("\nQual a Ficha?");
                 Console.WriteLine("Para sair escolha 0");
                 Console.WriteLine("Fichas disponiveis:");
-                Console.WriteLine("Ficha 6 ou 10");
-                Console.WriteLine("Ficha 7 ou 11");
-                Console.WriteLine("Ficha 8 ou 14");
-                Console.WriteLine("Ficha 9 ou 12");
+                Console.WriteLine("Ficha 10");
+                Console.WriteLine("Ficha 11");
+                Console.WriteLine("Ficha 12");
                 Console.WriteLine("Ficha 13");
+                Console.WriteLine("Ficha 14");
                 Console.WriteLine("Ficha 15");
                 Console.WriteLine("Ficha 16\n");
                 int f = Conversoes.ConverterStringParaInt(Console.ReadLine());
@@ -39,24 +39,20 @@ namespace Consola
                 {
                     case 0:
                         return;
-                    case 6:
                     case 10:
-                        Ficha6solucao.Ficha6();
+                        Ficha10solucao.Ficha10();
                         break;
                     case 11:
-                    case 7:
-                        Ficha7solucao.Ficha7();
+                        Ficha11solucao.Ficha11();
                         break;
-                    case 8:
-                    case 14:
-                        Ficha8solucao.Ficha8();
-                        break;
-                    case 9:
                     case 12:
                         Ficha12solucao.Ficha12();
                         break;
                     case 13:
                         Ficha13solucao.Ficha13();
+                        break;
+                    case 14:
+                        Ficha14solucao.Ficha14();
                         break;
                     case 15:
                         Ficha15solucao.Ficha15();
