@@ -1,4 +1,5 @@
-﻿using System; 
+﻿using System;
+using System.Collections.Generic;
 
 namespace Common
 {
@@ -50,7 +51,7 @@ namespace Common
             string[] a = new String[t];
             for (int i = 0; i < t; i++)
             {
-                var s = InputRequest.RequestString("Introduza um Número");
+                var s = InputRequest.RequestString("Introduza um Número Inteiro");
                 a.SetValue(s, i);
             }
             int[] b = new int[t];
@@ -92,6 +93,54 @@ namespace Common
                 a.SetValue(d, i);
             }
             return a;
+        }
+
+        /// <summary>
+        /// Creates an list of ints
+        /// </summary>
+        public static List<int> GetIntList(int t = -1)
+        {
+            if (t == -1)
+                t = RequestInt("Quantos elementos tem a Lista?", true);
+            List<int> l = new List<int>();
+            for (int i = 0; i < t; i++)
+            {
+                var n = InputRequest.RequestInt("Introduza um Número Inteiro");
+                l.Add(n);
+            }
+            return l;
+        }
+
+        /// <summary>
+        /// Creates an list of strings
+        /// </summary>
+        public static List<string> GetStrList(int t = -1)
+        {
+            if (t == -1)
+                t = RequestInt("Quantos elementos tem a Lista?", true);
+            List<string> l = new List<string>();
+            for (int i = 0; i < t; i++)
+            {
+                var s = InputRequest.RequestString("Escreva algo: ");
+                l.Add(s);
+            }
+            return l;
+        }
+
+        /// <summary>
+        /// Creates an list of doubles
+        /// </summary>
+        public static List<double> GetDoubleList(int t = -1)
+        {
+            if (t == -1)
+                t = RequestInt("Quantos elementos tem a Lista?", true);
+            var l = new List<double>();
+            for (int i = 0; i < t; i++)
+            {
+                var n = InputRequest.RequestDouble("Introduza um Número");
+                l.Add(n);
+            }
+            return l;
         }
     }
 }

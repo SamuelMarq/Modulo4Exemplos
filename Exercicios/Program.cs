@@ -6,6 +6,7 @@ using Ficha8;
 using Ficha12;
 using Ficha13;
 using Ficha15;
+using Ficha16;
 
 
 namespace Consola
@@ -30,7 +31,8 @@ namespace Consola
                 Console.WriteLine("Ficha 8 ou 14");
                 Console.WriteLine("Ficha 9 ou 12");
                 Console.WriteLine("Ficha 13");
-                Console.WriteLine("Ficha 15\n");
+                Console.WriteLine("Ficha 15");
+                Console.WriteLine("Ficha 16\n");
                 int f = Conversoes.ConverterStringParaInt(Console.ReadLine());
 
                 switch (f)
@@ -58,6 +60,9 @@ namespace Consola
                         break;
                     case 15:
                         Ficha15solucao.Ficha15();
+                        break;
+                    case 16:
+                        Ficha16solucao.Ficha16();
                         break;
                 }
             }
