@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Common
+namespace Recodme.Formacao.Modulo4Fichas.Common
 {
     public class Conversoes
     {

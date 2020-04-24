@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Common
+namespace Recodme.Formacao.Modulo4Fichas.Common
 {
     public class InputRequest
     {

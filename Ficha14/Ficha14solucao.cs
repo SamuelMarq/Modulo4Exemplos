@@ -1,7 +1,7 @@
 ﻿using System;
-using Common;
+using Recodme.Formacao.Modulo4Fichas.Common;
 
-namespace Ficha14
+namespace Recodme.Formacao.Modulo4Fichas.Fichas.Exercicios
 {
     public class Ficha14solucao
     {

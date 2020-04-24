@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <Configurations>Debug;Release;Exercicios</Configurations>
+    <RootNamespace>Recodme.Formacao.Modulo4Fichas.Fichas</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,9 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Configurations>Debug;Release;Exercicios</Configurations>
-    <RootNamespace>Recodme.Formacao.Modulo4Fichas.Fichas</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,6 +9,5 @@
     <ProjectReference Include="..\Printer\Printer.csproj" />
     <ProjectReference Include="..\Request\Request.csproj" />
   </ItemGroup>
-
 
 </Project>

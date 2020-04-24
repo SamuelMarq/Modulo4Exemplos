@@ -3,6 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Recodme.Formacao.Modulo4Fichas.Consola</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,6 +19,7 @@
     <ProjectReference Include="..\Ficha14\Ficha14.csproj" />
     <ProjectReference Include="..\Ficha15\Ficha15.csproj" />
     <ProjectReference Include="..\Ficha16\Ficha16.csproj" />
+    <ProjectReference Include="..\Ficha24\Ficha24.csproj" />
     <ProjectReference Include="..\Printer\Printer.csproj" />
     <ProjectReference Include="..\Request\Request.csproj" />
   </ItemGroup>

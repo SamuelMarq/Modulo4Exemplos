@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Recodme.Formacao.Modulo4Fichas.Fichas</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

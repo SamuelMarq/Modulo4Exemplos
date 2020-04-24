@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading;
-using Common;
+using Recodme.Formacao.Modulo4Fichas.Common;
 
-namespace Ficha13
+namespace Recodme.Formacao.Modulo4Fichas.Fichas.Exercicios
 {
     public class Ficha13solucao
     {
