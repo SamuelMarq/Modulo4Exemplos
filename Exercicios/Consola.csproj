@@ -19,6 +19,8 @@
     <ProjectReference Include="..\Ficha14\Ficha14.csproj" />
     <ProjectReference Include="..\Ficha15\Ficha15.csproj" />
     <ProjectReference Include="..\Ficha16\Ficha16.csproj" />
+    <ProjectReference Include="..\Ficha17\Ficha17.csproj" />
+    <ProjectReference Include="..\Ficha18\Ficha18.csproj" />
     <ProjectReference Include="..\Ficha24\Ficha24.csproj" />
     <ProjectReference Include="..\Printer\Printer.csproj" />
     <ProjectReference Include="..\Request\Request.csproj" />
