@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Conversoes\Conversoes.csproj" />
+    <ProjectReference Include="..\Printer\Printer.csproj" />
+    <ProjectReference Include="..\Request\Request.csproj" />
+  </ItemGroup>
+
+</Project>

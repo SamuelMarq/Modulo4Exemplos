@@ -30,7 +30,8 @@ namespace Recodme.Formacao.Modulo4Fichas.Consola
                 WriteLine(" Ficha 16");
                 WriteLine(" Ficha 17");
                 WriteLine(" Ficha 18");
-                WriteLine(" Ficha 24\n");
+                WriteLine(" Ficha 24");
+                WriteLine(" Ficha 27\n");
                 int f = Conversoes.ConverterStringParaInt(C.ReadLine());
 
                 switch (f)
@@ -66,6 +67,9 @@ namespace Recodme.Formacao.Modulo4Fichas.Consola
                         break;
                     case 24:
                         Ficha24solucao.Ficha24();
+                        break;
+                    case 27:
+                        Ficha27solucao.Ficha27();
                         break;
                 }
             }
